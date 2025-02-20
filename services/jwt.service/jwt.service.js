@@ -4,15 +4,15 @@ const {
   DecodedAndVerifiedToken,
 } = require("./jwt.service.token");
 const logger = require("../logger.service")(module);
-
+const jwtConfig = require("../../config").jwt;
 /**
  * API JWT service
  */
 class JwtService {
   #config;
 
-  constructor(config) {
-    this.#config = new JwtConfig(config);
+  constructor() {
+    this.#config = new JwtConfig(jwtConfig);
   }
 
   /**

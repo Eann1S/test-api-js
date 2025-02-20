@@ -18,4 +18,28 @@ const editOne = [
   validate,
 ];
 
-module.exports = { getOne, editOne };
+const createContact = [
+  check("name").isString().withMessage({
+    code: UnprocessableEntity,
+    message: "name: parameter has incorrect format",
+  }),
+  check("email").isEmail().withMessage({
+    code: UnprocessableEntity,
+    message: "email: parameter has incorrect format",
+  }),
+  check("phone").isString().withMessage({
+    code: UnprocessableEntity,
+    message: "phone: parameter has incorrect format",
+  }),
+  validate,
+];
+
+const deleteContact = [
+  check("id").isNumeric().withMessage({
+    code: UnprocessableEntity,
+    message: "id: parameter has incorrect format",
+  }),
+  validate,
+];
+
+module.exports = { getOne, editOne, createContact, deleteContact };

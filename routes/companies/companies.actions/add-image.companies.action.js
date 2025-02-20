@@ -5,7 +5,7 @@ const { getFileUrl } = require("../../../helpers/url.helper");
 const { OK } = require("../../../constants/http-codes");
 const imagesConfig = require("../../../config").images;
 const imageService = require("../../../services/image.service");
-const companyMethods = require("../../../DB/sample-db/methods/company");
+const Company = require("../../../models/company.model");
 const { NotFound } = require("../../../constants/errors");
 
 /**
@@ -21,7 +21,7 @@ async function addImage(req, res) {
   const file = req.files.file[0];
   const { id: userId } = req.payload;
 
-  const company = companyMethods.getOne(id);
+  const company = await Company.findById(id);
   if (!company) {
     throw new NotFound("Company not found");
   }

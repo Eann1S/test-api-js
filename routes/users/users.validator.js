@@ -18,4 +18,25 @@ const getAuth = [
   validate,
 ];
 
-module.exports = { getAuth };
+const registerUser = [
+  check("email")
+    .notEmpty()
+    .withMessage({
+      code: UnprocessableEntity,
+      message: "email: parameter is required",  
+    }),
+  validate,
+];
+
+const loginUser = [
+  check("email")
+    .notEmpty()
+    .withMessage({
+      code: UnprocessableEntity,
+      message: "email: parameter is required",  
+    }),
+  validate,
+];
+
+
+module.exports = { getAuth, registerUser, loginUser };

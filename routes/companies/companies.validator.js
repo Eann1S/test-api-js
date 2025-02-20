@@ -5,6 +5,7 @@ const validate = require("../../middleware/validation.middleware");
 const logger = require("../../services/logger.service")(module);
 const imageService = require("../../services/image.service");
 
+
 const getOne = [
   check("id").isNumeric().withMessage({
     code: UnprocessableEntity,
@@ -17,6 +18,49 @@ const editOne = [
   check("id").isNumeric().withMessage({
     code: UnprocessableEntity,
     message: "id: parameter has incorrect format",
+  }),
+  validate,
+];
+
+const createCompany = [
+  check("contactId").isNumeric().withMessage({
+    code: UnprocessableEntity,
+    message: "contactId: parameter has incorrect format",
+  }),
+  check("name").isString().withMessage({
+    code: UnprocessableEntity,
+    message: "name: parameter has incorrect format",
+  }),
+  check("shortName").isString().withMessage({
+    code: UnprocessableEntity,
+    message: "shortName: parameter has incorrect format",
+  }),
+  check("businessEntity").isString().withMessage({
+    code: UnprocessableEntity,
+    message: "businessEntity: parameter has incorrect format",
+  }),
+  check("type").isArray().withMessage({
+    code: UnprocessableEntity,
+    message: "type: parameter has incorrect format",
+  }),
+  check("status").isString().withMessage({
+    code: UnprocessableEntity,
+    message: "status: parameter has incorrect format",
+  }),
+  check("address").isString().withMessage({
+    code: UnprocessableEntity,
+    message: "address: parameter has incorrect format",
+  }),
+  validate,
+];
+const getCompanies = [
+  check("status").isString().withMessage({
+    code: UnprocessableEntity,
+    message: "status: parameter has incorrect format",
+  }),
+  check("type").isString().withMessage({
+    code: UnprocessableEntity,
+    message: "type: parameter has incorrect format",
   }),
   validate,
 ];
@@ -69,4 +113,4 @@ const removeImage = [
   validate,
 ];
 
-module.exports = { getOne, editOne, addImage, removeImage };
+module.exports = { getOne, editOne, addImage, removeImage, createCompany, getCompanies };

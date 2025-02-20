@@ -1,12 +1,12 @@
 const { startServer } = require("./server");
 const logger = require("./services/logger.service")(module);
 // todo: разкомментировать для работы с БД
-// const { sampleDB } = require("./services/database.service");
+const { sampleDB } = require("./services/database.service");
 
 (async () => {
   try {
     // todo: разкомментировать для работы с БД
-    // await sampleDB.connect();
+    await sampleDB.connect();
     startServer();
   } catch (error) {
     logger.error(error.message);

@@ -4,7 +4,7 @@ const { OK } = require("../../../constants/http-codes");
 const imagesConfig = require("../../../config").images;
 const imageService = require("../../../services/image.service");
 const { NotFound } = require("../../../constants/errors");
-const companyMethods = require("../../../DB/sample-db/methods/company");
+const Company = require("../../../models/company.model");
 
 /**
  * DELETE /companies/:id/image
@@ -19,7 +19,7 @@ async function removeImage(req, res) {
   const { id: userId } = req.payload;
   const { image_name: fileName } = req.query;
 
-  const company = companyMethods.getOne(id);
+  const company = await Company.findById(id);
   if (!company) {
     throw new NotFound("Company not found");
   }
