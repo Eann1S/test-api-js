@@ -15,10 +15,6 @@ module.exports = Router()
     ...validator.addImage,
     actions.addImage
   )
-  .delete(
-    "/companies/:id/image",
-    ...validator.removeImage,
-    actions.removeImage
-  )
-  .post('/companies', ...validator.createCompany, actions.createCompany)
-  .get('/companies', ...validator.getCompanies, actions.getCompanies);
+  .delete("/companies/:id/image", ...validator.removeImage, actions.removeImage)
+  .post("/companies", ...validator.createCompany, actions.createCompany)
+  .get("/companies", ...validator.getCompanies, actions.getCompanies);

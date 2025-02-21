@@ -1,36 +1,91 @@
-# Тестовое задание для Backend разработчика
+# Company Management API
 
-Необходимо на базе данного проекта реализовать АПИ, который предоставляет CRUD-интерфейс для работы с компаниями и связанными с ними контактами.
+A RESTful API for managing companies and their contacts with CRUD operations, built with Express.js and MongoDB.
 
-## Требования
+## Features
 
-* Результат выполнения задания должен быть выложен в любой открытый репозиторий
-* К проекту должна быть приложена инструкция по запуску, а также дамп БД, содержащий несколько записей о компаниях/контактах
-* В качестве БД нужно использовать MongoDB или PostgreSQL
+- JWT-based authentication
+- CRUD operations for companies
+- Contact management within companies
+- Image upload handling
+- Pagination, filtering, and sorting
+- Dockerized MongoDB setup
+- Automated testing suite
 
-## Минимальный набор задач
-> Для просмотра моков данных возвращаемых в ответ на запросы к существующим в коде эндпоинтам 
-использовать служебный метод получения авторизационного токена.
+## Technologies
 
-* Реализовать авторизацию по логин/паролю.
-* Реализовать методы получения/сохранения данных компаний и контактов. Пример форматов данных есть в "заглушках" в коде проекта.
-* Реализовать дополнительно метод получения списка компаний. Должна быть возможность отфильтровать по статусу и/или типу компании, отсортировать по имени и/или дате создания. Также метод получения списка должен предлагать параметры для реализации пагинации.
-* Реализовать метод удаления контакта.
-* Добавить компании новое свойство "адрес".
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (with Mongoose ODM)
+- **Authentication**: JWT, Argon2 password hashing
+- **Testing**: Jest, Supertest
+- **Infrastructure**: Docker, Docker Compose
 
-## Расширенный набор задач ( будет плюсом )
+## Getting Started
 
-* Дополнить необходимые автоматические тесты
-* Дополнить недостающую документацию к API
-* Любой рефакторинг и/или оптимизация на усмотрение соискателя
+### Prerequisites
 
-## Установка и запуск API
+- Node.js v18+
+- Docker & Docker Compose
+- MongoDB Compass (optional)
 
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/company-management-api.git
+cd company-management-api
 ```
-npm i
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up environment variables (copy .env.example to .env):
+
+```bash
+cp .env.example .env
+```
+
+4. Start the MongoDB container:
+
+```bash
+docker-compose up -d
+```
+
+5. Start the development server:
+
+```bash
 npm run start-dev
 ```
 
-* страница с этим описанием - http://localhost:2114/v1
-* страница с документацией - http://localhost:2114/v1/docs
+
+## API Documentation
+
+### Base URL
+`http://localhost:3000/api/v1`
+
+### Authentication
+| Endpoint | Method | Description              |
+|----------|--------|--------------------------|
+| `/auth/login` | POST | User login (get JWT token) |
+| `/auth/register` | POST | Create new user account |
+
+### Companies
+| Endpoint | Method | Description              |
+|----------|--------|--------------------------|
+| `/companies` | GET | List companies (with filters) |
+| `/companies` | POST | Create new company |
+| `/companies/:id` | GET | Get company details |
+| `/companies/:id` | PATCH | Update company |
+
+### Contacts
+| Endpoint | Method | Description              |
+|----------|--------|--------------------------|
+| `/contacts` | POST | Add contact to company |
+| `/contacts/:id` | DELETE | Remove contact from company |
+| `/contacts/:id` | PATCH | Update contact |
+| `/contacts/:id` | GET | Get contact details |
 
